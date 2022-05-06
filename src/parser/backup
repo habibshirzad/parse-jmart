@@ -1,0 +1,1179 @@
+// import { Inject, Injectable, Logger, OnApplicationBootstrap } from "@nestjs/common";
+// import { InjectRepository } from "@nestjs/typeorm";
+// import axios from 'axios'
+// import * as cheerio from 'cheerio'
+// import {Repository} from 'typeorm'
+// import { ProductEntity } from "./entities/product.entity";
+
+
+
+// the way we are storing data here is called massive
+        
+        // // product table
+        // for (let i = 0; i < products.length; i++ ){
+        //     const productName = products[i].product
+        //     const features = []
+        //     const group = []
+
+//         //     for (let f of products[i].product_features){
+//         //         const Description = f.description
+//         //         const Variant = f.variant
+//         //         // console.log(Variant)
+
+
+//         //         group.push({
+//         //             NameGroup: Description,    //brand
+//         //             features: [{NameFeatures: Variant}]
+                    
+//         //         })
+//         //         features.push({                 //apple
+//         //             NameFeatures: Variant
+//         //         })   
+//         //         await this.groupRepository.save({
+//         //             NameGroup: Description,
+//         //         })
+//         //         await this.featuresRepository.save({                 
+//         //             NameFeatures: Variant,
+//         //             group: Description
+//         //         })
+//         //     }
+
+//         //     const product = this.productRepository.create({
+//         //         Name: productName,
+//         //     })
+        
+//         //     // console.log(features
+//         //     await this.productRepository.save(product)
+                
+//         // }
+
+
+
+
+//         // -------------
+//  //product table
+//  for (let i = 0; i < products.length; i++ ){
+
+//     const productName = products[i].product
+//     const product = this.productRepository.create({Name: productName}) 
+//     await this.productRepository.save(product)
+//     // console.log(product)  
+    
+
+//     for (let f of products[i].product_features){
+
+//         const Description = f.description  //brand
+//         const Variant = f.variant           //apple
+
+//         const group = await this.groupRepository.create({ NameGroup:Description})
+//         await this.groupRepository.save(group)
+
+//         console.log(group.id)
+
+//         const object = { NameFeatures: Variant,groupId:group.id}
+//         const features = await this.featuresRepository.create(object)
+//         const t = await this.featuresRepository.save(features)
+
+
+        // const features = await this.featuresRepository.create({NameFeatures: Variant, groupId:group.id})
+        // const t = await this.featuresRepository.save(features)
+
+        // console.log(t)
+
+
+//     }   
+// }
+
+
+
+
+        // -------------
+
+
+
+// @Injectable()
+// export class parseService implements OnApplicationBootstrap{
+//     constructor(
+//         @InjectRepository(ProductEntity)
+// //         private productRepository: Repository<ProductEntity>
+// //     ){}
+    
+// //     onApplicationBootstrap() {
+// //         Logger.log('parsing started...')
+// //         this.parseProduct()
+// //     }
+
+
+// //     async parseProduct(){
+// //         let url = `https://jmart.kz/gw/catalog/v1/products?category_id=2879&show_totals=true`
+// //         const getJSONPage = await axios.get(url)
+// //         // console.log(getJSONPage)
+// //         // console.log(getJSONPage.data.data.total_pages)
+// //         const totalPages = getJSONPage.data.data.total_pages;
+
+// //         const products = [];
+// //         let jsonpage;
+// //         for (let i = 1; i < 3; i++){
+// //             url += `&page=${i}`
+// //             jsonpage = await axios.get(url)
+// //             products.push(...jsonpage.data.data.products)
+// //             await new Promise(r => setTimeout(r, 500));
+// //         }
+// //         // console.log(products.length)
+// //         // console.log(products[0])
+
+
+// //         for (let i = 0; i < products.length; i++ ){
+            
+// //             const productName = products[i].product
+// //             const productPrice = products[i].price
+// //             for (let f of products[i].product_features){
+// //                 const Feature_id = f.feature_id
+// //                 const Product_id = f.product_id
+// //                 const Variant_id = f.variant_id
+// //                 const Description = f.description
+// //                 // console.log(Description)
+// //                 for(let d of f.description){
+// //                     const descriptions = d[f]
+// //                     console.log(descriptions)
+// //                 }
+
+
+// //                 const Variant = f.variant
+
+
+
+// //             // const product = this.productRepository.create({title: productName, price: productPrice,feature_id: Feature_id,
+// //             //     product_id:Product_id,
+// //             //     variant_id: Variant_id,
+// //             //     description: Description,
+// //             //     variant: Variant})
+
+// //             // await this.productRepository.save(product)
+
+// //             }
+
+// //         } 
+        
+// //     }
+
+// // }
+
+// // --------------2part
+
+
+// // import { Inject, Injectable, Logger, OnApplicationBootstrap } from "@nestjs/common";
+// // import { InjectRepository } from "@nestjs/typeorm";
+// // import axios from 'axios'
+// // import * as cheerio from 'cheerio'
+// // import { group } from "console";
+// // import { grep } from "jquery";
+// // import {Repository} from 'typeorm'
+// // import { Features } from "./entities/features.entity";
+// // import { Group } from "./entities/group.entity";
+// // import { ProductEntity } from "./entities/product.entity";
+
+
+
+// // @Injectable()
+// // export class parseService implements OnApplicationBootstrap{
+// //     constructor(
+// //         @InjectRepository(ProductEntity)
+// //         private productRepository: Repository<ProductEntity>,
+// //         @InjectRepository(Features)
+// //         private featuresRepository: Repository<Features>,
+// //         @InjectRepository(Group)
+// //         private groupRepository: Repository<Group>
+
+        
+// //     ){}
+    
+// //     onApplicationBootstrap() {
+// //         Logger.log('parsing started...')
+// //         this.parseProduct()
+// //     }
+
+
+// //     async parseProduct(){
+// //         let url = `https://jmart.kz/gw/catalog/v1/products?category_id=2879&show_totals=true`
+// //         const getJSONPage = await axios.get(url)
+// //         // console.log(getJSONPage)
+// //         // console.log(getJSONPage.data.data.total_pages)
+// //         const totalPages = getJSONPage.data.data.total_pages;
+
+// //         const products = [];
+// //         let jsonpage;
+// //         for (let i = 1; i < 3; i++){
+// //             url += `&page=${i}`
+// //             jsonpage = await axios.get(url)
+// //             products.push(...jsonpage.data.data.products)
+// //             await new Promise(r => setTimeout(r, 500));
+// //         }
+      
+        
+// //         // product table
+// //         for (let i = 0; i < products.length; i++ ){
+            
+// //             const productName = products[i].product
+// //             // const productPrice = products[i].price
+// //             // const productAmount = products[i].amount
+// //             // const productBrand = products[i].product_features[0].variant
+// //             // const productID = products[i].product_id
+// //             const features = []
+           
+// //             // feature table
+// //             for (let f of products[i].product_features){
+// //                 const Description = f.description
+// //                 const Variant = f.variant
+// //                 // const FeatureID = f.feature_id
+          
+// //                 features.push({
+// //                     variant: Variant,
+// //                     // featureId: FeatureID,
+// //                     // nameGroup:Description
+// //                 })
+
+// //                 // group table
+// //                 const group = await this.groupRepository.create({nameGroup:Description})
+// //                 await this.groupRepository.save(group)
+
+
+// //             }
+            
+
+// //             const product = this.productRepository.create({
+// //                 name: productName,
+// //                 // price: productPrice,
+// //                 // amount: productAmount,
+// //                 // brand: productBrand,
+// //                 // productId: productID, 
+// //                 features: features,
+                    
+    
+// //             }) 
+// //             await this.productRepository.save(product)
+
+            
+
+
+
+// //         } 
+        
+// //     }
+
+// // }
+
+
+
+// // ----------3-------------
+// import { Inject, Injectable, Logger, OnApplicationBootstrap } from "@nestjs/common";
+// import { InjectRepository } from "@nestjs/typeorm";
+// import axios from 'axios'
+// import * as cheerio from 'cheerio'
+// import { group } from "console";
+// import { grep } from "jquery";
+// import {Repository} from 'typeorm'
+// import { Features } from "./entities/features.entity";
+// import { Group } from "./entities/group.entity";
+// import { ProductEntity } from "./entities/product.entity";
+
+
+
+// @Injectable()
+// export class parseService implements OnApplicationBootstrap{
+//     constructor(
+//         @InjectRepository(ProductEntity)
+//         private productRepository: Repository<ProductEntity>,
+//         @InjectRepository(Features)
+//         private featuresRepository: Repository<Features>,
+//         @InjectRepository(Group)
+//         private groupRepository: Repository<Group>
+
+        
+//     ){}
+    
+//     onApplicationBootstrap() {
+//         Logger.log('parsing started...')
+//         this.parseProduct()
+//     }
+
+
+//     async parseProduct(){
+//         let url = `https://jmart.kz/gw/catalog/v1/products?category_id=2879&show_totals=true`
+//         const getJSONPage = await axios.get(url)
+//         // console.log(getJSONPage)
+//         // console.log(getJSONPage.data.data.total_pages)
+//         const totalPages = getJSONPage.data.data.total_pages;
+
+//         const products = [];
+//         let jsonpage;
+//         for (let i = 1; i < 3; i++){
+//             url += `&page=${i}`
+//             jsonpage = await axios.get(url)
+//             products.push(...jsonpage.data.data.products)
+//             await new Promise(r => setTimeout(r, 500));
+//         }
+      
+        
+//         // product table
+//         for (let i = 0; i < products.length; i++ ){
+//             const productName = products[i].product
+
+//             const product = this.productRepository.create({name: productName}) 
+//             await this.productRepository.save(product)
+//             console.log(product)   
+
+//             for (let f of products[i].product_features){
+//                  // group table
+//                 const Description = f.description
+//                 // console.log(Description)
+//                 const group = await this.groupRepository.create({nameGroup:Description})
+//                 await this.groupRepository.save(group)
+
+//                 // feature table
+//                 const Variant = f.variant
+//                 const feature = await this.featuresRepository.create({nameFeature:Variant})
+//                 await this.featuresRepository.save(feature)
+//             }
+                 
+            
+//         }                  
+
+       
+//     }
+
+// }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// // ars technica website
+// @Injectable()
+// export class parseService implements OnApplicationBootstrap{
+
+//     onApplicationBootstrap() {
+//         Logger.log('parsing started...')
+//         this.technicaParse()
+//     }
+//     async technicaParse(){
+
+//         let url = 'https://arstechnica.com/gadgets/'
+//         const html = await axios.get(url)
+        
+//             const htmlData = html.data
+//             const $ = cheerio.load(htmlData);
+//             // console.log($)
+//             // console.log(html)
+//             // console.log(htmlData)
+
+//             const linkHead = []
+
+//             $('li.article', htmlData).each((index,element) => {
+//                 const link = $(element).find('a.overlay').attr('href')
+//                 // console.log(link)
+//                 const header = $(element).children('header').find('a').text()
+//                 // console.log(header)
+
+//                 // const header1 = $(element).find('a').text().split(' /n')[0];
+//                 // console.log(header1)
+
+//                 linkHead.push({
+//                     link,
+//                     header
+//                 })
+//                 console.log(linkHead)
+//             })
+//         }
+      
+//     }
+
+
+
+
+
+
+
+
+// // sport website
+// @Injectable()
+// export class parseService implements OnApplicationBootstrap{
+
+//     onApplicationBootstrap() {
+//         Logger.log('parsing started...')
+//         this.sportParse()
+//     }
+//     async sportParse(){
+
+//         let url = 'https://www.manchestereveningnews.co.uk/sport/football/'
+//         const html = await axios.get(url)
+        
+//             const htmlData = html.data
+//             const $ = cheerio.load(htmlData);
+//             // console.log($)
+//             // console.log(html)
+//             // console.log(htmlData)
+
+//             const articles = []
+
+//             $('.teaser', htmlData).each((index,element) => {
+//                 const title = $(element).children('.headline').text()
+//                 // console.log(title)
+//                 const titleURL = $(element).children('.headline').attr('href')
+//                 // console.log(titleURL)
+//                 articles.push({
+//                     title,
+//                     titleURL
+//                 })
+//                 // console.log(articles)
+//             })
+//         }
+      
+//     }
+
+
+
+
+
+
+// @Injectable()
+// export class parseService implements OnApplicationBootstrap{
+
+   
+//     onApplicationBootstrap() {
+//         Logger.log('parsing started...')
+//         this.parseProduct()
+//     }
+
+//      async parseProduct(){
+
+//         let url = `https://jmart.kz/products?category_id=268`
+
+//         const products = await axios.get(url)
+//         // const $ = cheerio.load(html.data);
+//         // console.log($)
+
+//         let data = []
+
+//         $("body").each((_i,elem) => {
+//             data.push({
+//                 model: $(elem).find("h1").text().split(',')[0],
+//                 memory: $(elem).children().find("h1").text().split(',')[1],
+//                 info : $(elem).find("p").text(),
+//                 // char: $(elem).children('.col, .row').find('p').text()
+//             })
+//         })
+//         console.log(data)
+//       }
+//     }
+
+
+
+
+
+
+
+
+// @Injectable()
+// export class parseService implements OnApplicationBootstrap{
+
+//     onApplicationBootstrap() {
+//         Logger.log('parsing started...')
+//         this.parseProduct()
+//     }
+//     async parseProduct(){
+//         axios.get(`https://jmart.kz/products/3177149/P/`)
+//         .then((response) => {
+//             const $ = cheerio.load(response.data);
+//             console.log($);
+        
+//             const Jmart = $(' #main-body .d-block .col')
+//             console.log(Jmart)
+
+//             for (let i = 0;i <= Jmart.length; i++){
+
+//                 let brandNa = $(Jmart[i]).find('p'),
+//                 brandName = $(brandNa).text()
+//                 console.log(brandName)
+
+//             }
+//         })
+//     }
+// }
+    
+
+
+
+// // ---------------4-----------
+
+//    // product table
+//    for (let i = 0; i < products.length; i++ ){
+//     const productName = products[i].product
+//     const product = this.productRepository.create({name: productName}) 
+//     await this.productRepository.save(product)
+//     console.log(product)  
+    
+
+//     for (let f of products[i].product_features){
+//          // group table
+//         const Description = f.description
+//         // console.log(Description)
+//         const Variant = f.variant
+
+//         const group = await this.groupRepository.create({nameGroup:Description})
+//         // await this.groupRepository.save(group)
+
+//         // feature table
+//         const feature = await this.featuresRepository.create({nameFeature:Variant})
+//         // await this.featuresRepository.save(feature)
+//     }   
+// } 
+    
+
+
+// --------------5-----------------
+// @Injectable()
+// export class parseService implements OnApplicationBootstrap{
+//     constructor(
+//         @InjectRepository(ProductEntity)
+//         private productRepository: Repository<ProductEntity>,
+//         @InjectRepository(Features)
+//         private featuresRepository: Repository<Features>,
+//         @InjectRepository(Group)
+//         private groupRepository: Repository<Group>
+
+        
+//     ){}
+    
+//     onApplicationBootstrap() {
+//         Logger.log('parsing started...')
+//         this.parseProduct()
+//     }
+
+
+//     async parseProduct(){
+//         let url = `https://jmart.kz/gw/catalog/v1/products?category_id=2879&show_totals=true`
+//         const getJSONPage = await axios.get(url)
+//         // console.log(getJSONPage)
+//         // console.log(getJSONPage.data.data.total_pages)
+//         const totalPages = getJSONPage.data.data.total_pages;
+
+//         const products = [];
+//         let jsonpage;
+//         for (let i = 1; i < 3; i++){
+//             url += `&page=${i}`
+//             jsonpage = await axios.get(url)
+//             products.push(...jsonpage.data.data.products)
+//             await new Promise(r => setTimeout(r, 500));
+//         }
+      
+        
+//         // product table
+//         for (let i = 0; i < products.length; i++ ){
+//             const productName = products[i].product
+//             const features = []
+//             const group = []
+
+//             for (let f of products[i].product_features){
+//                 const Description = f.description
+//                 const Variant = f.variant
+//                 // console.log(Variant)
+
+
+//                 group.push({
+//                     NameGroup: Description,    //brand
+//                     features: [{NameFeatures: Variant}]
+                    
+//                 })
+
+//                 features.push({                 //apple
+//                     NameFeatures: Variant
+//                 })   
+                
+//                 await this.groupRepository.save({
+//                     NameGroup: Description,
+//                 })
+//                 await this.featuresRepository.save({                 
+//                     NameFeatures: Variant,
+//                     group: Description
+//                 })
+//             }
+
+//             const product = this.productRepository.create({
+//                 Name: productName,
+//                 // features: features
+//             })
+        
+//             // console.log(features
+//             await this.productRepository.save(product)
+//             // console.log(product)     
+//         }
+
+    
+
+
+
+    
+
+
+
+    
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// // ars technica website
+// @Injectable()
+// export class parseService implements OnApplicationBootstrap{
+
+//     onApplicationBootstrap() {
+//         Logger.log('parsing started...')
+//         this.technicaParse()
+//     }
+//     async technicaParse(){
+
+//         let url = 'https://arstechnica.com/gadgets/'
+//         const html = await axios.get(url)
+        
+//             const htmlData = html.data
+//             const $ = cheerio.load(htmlData);
+//             // console.log($)
+//             // console.log(html)
+//             // console.log(htmlData)
+
+//             const linkHead = []
+
+//             $('li.article', htmlData).each((index,element) => {
+//                 const link = $(element).find('a.overlay').attr('href')
+//                 // console.log(link)
+//                 const header = $(element).children('header').find('a').text()
+//                 // console.log(header)
+
+//                 // const header1 = $(element).find('a').text().split(' /n')[0];
+//                 // console.log(header1)
+
+//                 linkHead.push({
+//                     link,
+//                     header
+//                 })
+//                 console.log(linkHead)
+//             })
+//         }
+      
+//     }
+
+
+
+
+
+
+
+
+// // sport website
+// @Injectable()
+// export class parseService implements OnApplicationBootstrap{
+
+//     onApplicationBootstrap() {
+//         Logger.log('parsing started...')
+//         this.sportParse()
+//     }
+//     async sportParse(){
+
+//         let url = 'https://www.manchestereveningnews.co.uk/sport/football/'
+//         const html = await axios.get(url)
+        
+//             const htmlData = html.data
+//             const $ = cheerio.load(htmlData);
+//             // console.log($)
+//             // console.log(html)
+//             // console.log(htmlData)
+
+//             const articles = []
+
+//             $('.teaser', htmlData).each((index,element) => {
+//                 const title = $(element).children('.headline').text()
+//                 // console.log(title)
+//                 const titleURL = $(element).children('.headline').attr('href')
+//                 // console.log(titleURL)
+//                 articles.push({
+//                     title,
+//                     titleURL
+//                 })
+//                 // console.log(articles)
+//             })
+//         }
+      
+//     }
+
+
+
+
+
+
+// @Injectable()
+// export class parseService implements OnApplicationBootstrap{
+
+   
+//     onApplicationBootstrap() {
+//         Logger.log('parsing started...')
+//         this.parseProduct()
+//     }
+
+//      async parseProduct(){
+
+//         let url = `https://jmart.kz/products?category_id=268`
+
+//         const products = await axios.get(url)
+//         // const $ = cheerio.load(html.data);
+//         // console.log($)
+
+//         let data = []
+
+//         $("body").each((_i,elem) => {
+//             data.push({
+//                 model: $(elem).find("h1").text().split(',')[0],
+//                 memory: $(elem).children().find("h1").text().split(',')[1],
+//                 info : $(elem).find("p").text(),
+//                 // char: $(elem).children('.col, .row').find('p').text()
+//             })
+//         })
+//         console.log(data)
+//       }
+//     }
+
+
+
+
+
+
+
+
+// @Injectable()
+// export class parseService implements OnApplicationBootstrap{
+
+//     onApplicationBootstrap() {
+//         Logger.log('parsing started...')
+//         this.parseProduct()
+//     }
+//     async parseProduct(){
+//         axios.get(`https://jmart.kz/products/3177149/P/`)
+//         .then((response) => {
+//             const $ = cheerio.load(response.data);
+//             console.log($);
+        
+//             const Jmart = $(' #main-body .d-block .col')
+//             console.log(Jmart)
+
+//             for (let i = 0;i <= Jmart.length; i++){
+
+//                 let brandNa = $(Jmart[i]).find('p'),
+//                 brandName = $(brandNa).text()
+//                 console.log(brandName)
+
+//             }
+//         })
+//     }
+// }
+    
+    
+
+
+    
+
+
+
+    
+
+
+
+    
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// // // ars technica website
+// // @Injectable()
+// // export class parseService implements OnApplicationBootstrap{
+
+// //     onApplicationBootstrap() {
+// //         Logger.log('parsing started...')
+// //         this.technicaParse()
+// //     }
+// //     async technicaParse(){
+
+// //         let url = 'https://arstechnica.com/gadgets/'
+// //         const html = await axios.get(url)
+        
+// //             const htmlData = html.data
+// //             const $ = cheerio.load(htmlData);
+// //             // console.log($)
+// //             // console.log(html)
+// //             // console.log(htmlData)
+
+// //             const linkHead = []
+
+// //             $('li.article', htmlData).each((index,element) => {
+// //                 const link = $(element).find('a.overlay').attr('href')
+// //                 // console.log(link)
+// //                 const header = $(element).children('header').find('a').text()
+// //                 // console.log(header)
+
+// //                 // const header1 = $(element).find('a').text().split(' /n')[0];
+// //                 // console.log(header1)
+
+// //                 linkHead.push({
+// //                     link,
+// //                     header
+// //                 })
+// //                 console.log(linkHead)
+// //             })
+// //         }
+      
+// //     }
+
+
+
+
+
+
+
+
+// // // sport website
+// // @Injectable()
+// // export class parseService implements OnApplicationBootstrap{
+
+// //     onApplicationBootstrap() {
+// //         Logger.log('parsing started...')
+// //         this.sportParse()
+// //     }
+// //     async sportParse(){
+
+// //         let url = 'https://www.manchestereveningnews.co.uk/sport/football/'
+// //         const html = await axios.get(url)
+        
+// //             const htmlData = html.data
+// //             const $ = cheerio.load(htmlData);
+// //             // console.log($)
+// //             // console.log(html)
+// //             // console.log(htmlData)
+
+// //             const articles = []
+
+// //             $('.teaser', htmlData).each((index,element) => {
+// //                 const title = $(element).children('.headline').text()
+// //                 // console.log(title)
+// //                 const titleURL = $(element).children('.headline').attr('href')
+// //                 // console.log(titleURL)
+// //                 articles.push({
+// //                     title,
+// //                     titleURL
+// //                 })
+// //                 // console.log(articles)
+// //             })
+// //         }
+      
+// //     }
+
+
+
+
+
+
+// // @Injectable()
+// // export class parseService implements OnApplicationBootstrap{
+
+   
+// //     onApplicationBootstrap() {
+// //         Logger.log('parsing started...')
+// //         this.parseProduct()
+// //     }
+
+// //      async parseProduct(){
+
+// //         let url = `https://jmart.kz/products?category_id=268`
+
+// //         const products = await axios.get(url)
+// //         // const $ = cheerio.load(html.data);
+// //         // console.log($)
+
+// //         let data = []
+
+// //         $("body").each((_i,elem) => {
+// //             data.push({
+// //                 model: $(elem).find("h1").text().split(',')[0],
+// //                 memory: $(elem).children().find("h1").text().split(',')[1],
+// //                 info : $(elem).find("p").text(),
+// //                 // char: $(elem).children('.col, .row').find('p').text()
+// //             })
+// //         })
+// //         console.log(data)
+// //       }
+// //     }
+
+
+
+
+
+
+
+
+// // @Injectable()
+// // export class parseService implements OnApplicationBootstrap{
+
+// //     onApplicationBootstrap() {
+// //         Logger.log('parsing started...')
+// //         this.parseProduct()
+// //     }
+// //     async parseProduct(){
+// //         axios.get(`https://jmart.kz/products/3177149/P/`)
+// //         .then((response) => {
+// //             const $ = cheerio.load(response.data);
+// //             console.log($);
+        
+// //             const Jmart = $(' #main-body .d-block .col')
+// //             console.log(Jmart)
+
+// //             for (let i = 0;i <= Jmart.length; i++){
+
+// //                 let brandNa = $(Jmart[i]).find('p'),
+// //                 brandName = $(brandNa).text()
+// //                 console.log(brandName)
+
+// //             }
+// //         })
+// //     }
+// // }
+    
+    
+
+
+    
+
+
+
+    
+
+
+
+    
+
+
+
+  
+
+
